@@ -1,0 +1,36 @@
+.baseButton {
+  background-color: transparent;
+  color: $white;
+  height: 50px;
+  border-radius: 25px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font: 400 18px/1em "PT Sans", sans-serif;
+  text-decoration: none;
+  border: none;
+  padding: 0 15px;
+  min-width: 150px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+
+  @include hover() {
+    &::after {
+      transform: translateY(-50%);
+    }
+  }
+
+  &::after {
+    background: linear-gradient(to top, $message1, $message2, $message1);
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    height: 200%;
+    position: absolute;
+    transition: 0.3s ease transform;
+    z-index: -1;
+  }
+}

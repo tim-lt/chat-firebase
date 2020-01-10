@@ -1,0 +1,82 @@
+.auth {
+  height: 100%;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    width: 0;
+  }
+
+  &__form {
+    background-color: $default;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+  }
+
+  &__container {
+    align-items: center;
+    background-color: $white;
+    border-radius: 35px;
+    box-shadow: 12px 12px 6px 5px rgba(0, 0, 0, 0.35);
+    display: inline-flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 380px;
+  }
+
+  &__title {
+    color: $main;
+    font: 700 45px/1em "PT Sans", sans-serif;
+    margin-bottom: 30px;
+    user-select: none;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &__input {
+    width: 100%;
+
+    & + & {
+      margin-top: 30px;
+    }
+  }
+
+  &__button {
+    margin-top: 30px;
+  }
+
+  &__buttonText {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    color: $main;
+    font: 400 18px/1em "PT Sans", sans-serif;
+    position: relative;
+    text-decoration: none;
+    overflow: hidden;
+    z-index: 2;
+
+    @include hover() {
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &::after {
+      background-color: $main;
+      content: "";
+      left: 0;
+      transform: scaleX(0);
+      bottom: 0;
+      height: 1px;
+      width: 100%;
+      position: absolute;
+      transition: 0.3s ease transform;
+      z-index: -1;
+    }
+  }
+}

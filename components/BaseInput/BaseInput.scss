@@ -1,0 +1,108 @@
+.baseInput {
+  background-color: $background;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  height: 50px;
+  padding: 10px 15px 10px 40px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  transition: 0.3s border-color ease, 0.3s ease background-color;
+
+  @include hover() {
+    background-color: rgba($default, 0.6);
+
+    svg {
+      fill: $main;
+    }
+  }
+
+  &--error {
+    border-color: $error;
+
+    .baseInput__error {
+      visibility: visible;
+      opacity: 1;
+      transition: 0.3s opacity, 0s visibility;
+    }
+
+    .baseInput__item {
+      color: $error;
+    }
+
+    .baseInput__placeholder {
+      color: $error;
+    }
+  }
+
+  &--recorded {
+    .baseInput__placeholder {
+      color: $text;
+      transform: translateY(-13px) translateY(-50%) scale(0.7);
+    }
+
+    svg {
+      fill: $main;
+    }
+  }
+
+  &__item {
+    background-color: transparent;
+    border: none;
+    color: $main;
+    font: 18px/1em "PT Sans", sans-serif;
+    height: 20px;
+    padding: 0;
+    user-select: none;
+    transition: 0.3s color ease;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus + .baseInput__placeholder {
+      transform: translateY(-13px) translateY(-50%) scale(0.7);
+    }
+
+    &:focus ~ svg {
+      fill: $main;
+    }
+  }
+
+  &__placeholder {
+    color: $text;
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    transition: 0.3s color ease, 0.3s transform ease;
+    transform-origin: left;
+    z-index: 2;
+  }
+
+  &__error {
+    font: 300 14px/1em "PT Sans", sans-serif;
+    transform: translateY(5px);
+    color: $error;
+    left: 40px;
+    max-width: calc(100% - 40px);
+    top: 100%;
+    position: absolute;
+    visibility: hidden;
+    transition: 0.3s opacity, 0s visibility 0.3s;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  svg {
+    position: absolute;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    fill: $text;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.3s ease fill;
+    z-index: 1;
+  }
+}

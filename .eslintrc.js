@@ -8,7 +8,7 @@ module.exports = {
     parser: 'babel-eslint'
   },
   extends: [
-    '@nuxtjs',
+    'airbnb-base',
     'plugin:nuxt/recommended'
   ],
   // add your custom rules here

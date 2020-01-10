@@ -5,7 +5,6 @@ $breakpoints: (
   "tablet":           1023px, // 640
   "desktop-small":    1365px, // 1024
   "desktop":          1919px, // 1366
-  "desktop-large":    2559px, // 1920
 );
 
 @mixin mq($width, $widthMax: false) {
@@ -55,3 +54,13 @@ $breakpoints: (
     @content;
   }
 }
+
+/** colors **/
+$white: #fff;
+$main: #25315A;
+$text: #C6C5CB;
+$message1: #ff4f71;
+$message2: #fd7b4f;
+$default: #d3dbde;
+$background: #eef1f8;
+$error: #e84a4a;
