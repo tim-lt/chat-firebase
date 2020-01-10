@@ -1,0 +1,57 @@
+/*stylelint-disable*/
+// @media
+$breakpoints: (
+  "phone":            639px, // 320
+  "tablet":           1023px, // 640
+  "desktop-small":    1365px, // 1024
+  "desktop":          1919px, // 1366
+  "desktop-large":    2559px, // 1920
+);
+
+@mixin mq($width, $widthMax: false) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+
+    @if ($widthMax !=  false) {
+      $widthMax: map_get($breakpoints, $widthMax);
+
+      @media only screen and (max-width: $width) and (min-width: $widthMax + 1) {
+        @content;
+      }
+    }
+
+    @else {
+      @media only screen and (max-width: $width) {
+        @content;
+      }
+    }
+  }
+}
+
+// Расчитываем процент ребенка относительно родителя
+@function p($parent,$child) {
+  @return ($child * 100%) / $parent;
+}
+
+@function vw($parent,$child) {
+  @return ($child * 100vw) / $parent;
+}
+
+@function vh($parent,$child) {
+  @return ($child * 100vh) / $parent;
+}
+
+@function vh_min_max($min, $max, $minScreen, $maxScreen) {
+  @return calc( #{$min}px + #{$max - $min} * (100vh - #{$minScreen}px) / #{$maxScreen - $minScreen});
+}
+
+// Character Spacing
+@function chs($target) {
+  @return ($target / 1000) * 1em;
+}
+
+@mixin hover() {
+  body:not(.is-touch) &:hover {
+    @content;
+  }
+}

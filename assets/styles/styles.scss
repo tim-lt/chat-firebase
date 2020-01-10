@@ -1,0 +1,28 @@
+/* stylelint-disable */
+html,
+body,
+#__nuxt,
+#__layout {
+  min-width: 320px;
+  height: 100%;
+}
+
+body {
+  background-color: #fff;
+  font-family: 'Arial', sans-serif;
+  color: #000;
+}
+
+#__layout {
+  & > div:first-child {
+    height: 100%;
+  }
+}
+
+.page-enter-active, .page-leave-active {
+  transition: opacity .3s ease-in-out;
+}
+.page-enter, .page-leave-active {
+  opacity: 0;
+}
+/* stylelint-enable */
