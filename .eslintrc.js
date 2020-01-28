@@ -18,7 +18,8 @@ module.exports = {
     'max-len': 0,
     'no-underscore-dangle': 0,
     'generator-star-spacing': 0,
-    'nuxt/no-cjs-in-config': 'off'
+    'nuxt/no-cjs-in-config': 'off',
+    'import/no-unresolved': 0,
   },
   settings: {
     'import/resolver': {

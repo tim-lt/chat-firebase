@@ -51,10 +51,11 @@
     border: none;
     color: $main;
     font: 18px/1em "PT Sans", sans-serif;
-    height: 20px;
+    height: 21px;
     padding: 0;
     user-select: none;
     transition: 0.3s color ease;
+    width: 100%;
 
     &::placeholder {
       color: transparent;
@@ -89,9 +90,14 @@
     top: 100%;
     position: absolute;
     visibility: hidden;
+    text-align: left;
     transition: 0.3s opacity, 0s visibility 0.3s;
     opacity: 0;
     z-index: 1;
+
+    @include mq ("phone") {
+      font-size: 10px;
+    }
   }
 
   svg {

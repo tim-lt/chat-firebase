@@ -13,3 +13,9 @@ div {
   }
 }
 </style>
+
+<script>
+export default {
+  middleware: ['isLogget'],
+};
+</script>>

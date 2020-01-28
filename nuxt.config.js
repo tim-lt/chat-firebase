@@ -1,5 +1,8 @@
 
 module.exports = {
+  router: {
+    middleware: ['auth'],
+  },
   mode: 'universal',
   /*
   ** Headers of the page
@@ -40,6 +43,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/firebase', mode: 'all' },
   ],
   /*
   ** Nuxt.js dev-modules

@@ -18,15 +18,8 @@ export default {
     },
     value: {},
   },
-  data() {
-    return {
-      recorded: false,
-    };
-  },
   methods: {
     onChange({ target }) {
-      if (target.value !== '') this.recorded = true;
-      else this.recorded = false;
       this.$emit('input', target.value);
     },
   },

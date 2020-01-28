@@ -1,5 +1,5 @@
-label.baseInput(:class="{'baseInput--error':errorMessage !== '', 'baseInput--recorded':recorded}")
-  input.baseInput__item(:type="type", placeholder="", :name="name", autocomplete="off", @input="onChange")
+label.baseInput(:class="{'baseInput--error':errorMessage !== '', 'baseInput--recorded': value}")
+  input.baseInput__item(:type="type", placeholder="", :name="name", autocomplete="off", @input="onChange", :value="value", ref="input")
   span.baseInput__placeholder {{ placeholder }}
   slot
   span.baseInput__error(v-if="errorMessage !== ''") {{ errorMessage }}
