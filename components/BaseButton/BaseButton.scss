@@ -33,4 +33,22 @@
     transition: 0.3s ease transform;
     z-index: -1;
   }
+
+  &__content {
+    position: relative;
+    transition: 0.3s ease opacity;
+    z-index: 1;
+
+    &--loading {
+      opacity: 0;
+    }
+  }
+
+  &__spanner {
+    transform: scale(0.5);
+  }
+
+  &:disabled {
+    pointer-events: none;
+  }
 }

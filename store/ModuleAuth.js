@@ -3,9 +3,10 @@ const STATE = () => ({
 });
 
 const ACTIONS = {
-  async login(ctx, { email, password }) {
+  async login({ dispatch }, { email, password }) {
     try {
       await this.$fb.auth.signInWithEmailAndPassword(email, password);
+      await dispatch('getUid');
     } catch (e) {
       if (e.code) throw new Error(e.code);
       console.log(e);
@@ -28,6 +29,14 @@ const ACTIONS = {
   async getUid({ commit }) {
     const user = this.$fb.auth.currentUser;
     commit('setId', user ? user.uid : '');
+  },
+  async logout({ dispatch }) {
+    try {
+      await this.$fb.auth.signOut();
+      dispatch('getUid');
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
 

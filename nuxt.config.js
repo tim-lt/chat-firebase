@@ -1,7 +1,7 @@
 
 module.exports = {
   router: {
-    middleware: ['auth'],
+    middleware: ['isLogget'],
   },
   mode: 'universal',
   /*
@@ -22,7 +22,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: '~/components/PagePreloader/PagePreloader.vue',
+  loading: '~/components/BaseSpinner/BaseSpinner.vue',
   /*
   ** Global CSS
   */

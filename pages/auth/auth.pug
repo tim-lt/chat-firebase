@@ -13,4 +13,4 @@
 
         nuxt-link.auth__button.auth__buttonText(to="/registration") У меня еще нет аккаунта
 
-        BaseButton.auth__button(type="submit") Войти
+        BaseButton.auth__button(type="submit", :loading="isLoading") Войти

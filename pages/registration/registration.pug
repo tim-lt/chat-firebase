@@ -19,4 +19,4 @@
 
         nuxt-link.registration__button.registration__buttonText(to="/auth") У меня уже есть аккаунт
 
-        BaseButton.registration__button(type="submit") Зарегестрироваться
+        BaseButton.registration__button(type="submit", :loading="isLoading") Зарегестрироваться

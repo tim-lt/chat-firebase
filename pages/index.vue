@@ -4,18 +4,13 @@
 </template>
 
 <style lang="scss">
-div {
-  display: flex;
-  justify-content: center;
-
-  h1 {
-    font-size: 35px;
-  }
+h1 {
+  font-size: 35px;
 }
 </style>
 
 <script>
 export default {
-  middleware: ['isLogget'],
+  // middleware: ['isLogget'],
 };
 </script>>

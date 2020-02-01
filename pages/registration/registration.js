@@ -4,6 +4,7 @@ import errors from '~/assets/scripts/errors';
 import { email } from '~/assets/scripts/regex';
 
 export default {
+  layout: 'empty',
   components: {
     BaseInput,
     BaseButton,
@@ -16,6 +17,7 @@ export default {
       passwordError: '',
       name: 'tim',
       nameError: '',
+      isLoading: false,
     };
   },
   watch: {
@@ -39,14 +41,17 @@ export default {
       if (this.name.length < 2) this.nameError = errors.name;
       if (this.emailError === '' && this.passwordError === '' && this.nameError === '') {
         try {
+          this.isLoading = true;
           await this.$store.dispatch('ModuleAuth/register', {
             email: this.email,
             password: this.password,
             name: this.name,
           });
           this.clearForm();
+          this.isLoading = false;
           this.$router.push('/');
         } catch (e) {
+          this.isLoading = false;
           if (e.message && e.message === 'auth/email-already-in-use') this.emailError = errors[e.message];
           else {
             console.log(e);
