@@ -4,18 +4,18 @@
       .container.page__headerContainer
         .page__name {{ name }}
         BaseButton(@click.native="logout") Выйти
-    main
+    main.page__main
       nuxt
 </template>
 
 <style lang="scss">
 .page {
-  background-color: $page;
   display: flex;
   flex-direction: column;
 
   &__header {
     border-bottom: 2px solid $background;
+    background-color: $page;
     height: 60px;
   }
 
@@ -30,6 +30,10 @@
     color: $main;
     font: 700 24px/1em "PT Sans", sans-serif;
     text-transform: uppercase;
+  }
+
+  &__main {
+    background-color: $page;
   }
 }
 </style>
