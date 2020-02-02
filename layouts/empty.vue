@@ -5,6 +5,6 @@
 
 <style lang="scss">
 .empty {
-  background-color: $default;
+  background-color: $page;
 }
 </style>

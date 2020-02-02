@@ -11,11 +11,11 @@ export default {
   },
   data() {
     return {
-      email: 't@t.ru',
+      email: '',
       emailError: '',
-      password: '123321',
+      password: '',
       passwordError: '',
-      name: 'tim',
+      name: '',
       nameError: '',
       isLoading: false,
     };

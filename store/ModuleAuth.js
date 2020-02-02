@@ -1,23 +1,33 @@
 const STATE = () => ({
   userID: '',
+  name: '',
 });
 
 const ACTIONS = {
-  async login({ dispatch }, { email, password }) {
+  async login({ dispatch, commit }, { email, password }) {
     try {
       await this.$fb.auth.signInWithEmailAndPassword(email, password);
-      await dispatch('getUid');
+      const userId = await dispatch('getUid');
+      const name = await this.$fb.database.ref(`/users/${userId}/info`).once('value');
+      commit('setId', {
+        id: userId,
+        name: name.val().name,
+      });
     } catch (e) {
       if (e.code) throw new Error(e.code);
       console.log(e);
     }
   },
-  async register({ dispatch, state }, { email, password, name }) {
+  async register({ dispatch, commit }, { email, password, name }) {
     try {
       await this.$fb.auth.createUserWithEmailAndPassword(email, password);
-      await dispatch('getUid');
-      if (state.userID) {
-        await this.$fb.database.ref(`/users/${state.userID}/info`).set({
+      const userId = await dispatch('getUid');
+      commit('setId', {
+        id: userId,
+        name,
+      });
+      if (userId) {
+        await this.$fb.database.ref(`/users/${userId}/info`).set({
           name,
         });
       }
@@ -26,14 +36,14 @@ const ACTIONS = {
       console.log(e);
     }
   },
-  async getUid({ commit }) {
+  async getUid() {
     const user = this.$fb.auth.currentUser;
-    commit('setId', user ? user.uid : '');
+    return user ? user.uid : '';
   },
-  async logout({ dispatch }) {
+  async logout({ commit }) {
     try {
       await this.$fb.auth.signOut();
-      dispatch('getUid');
+      commit('setId');
     } catch (e) {
       console.log(e);
     }
@@ -41,9 +51,10 @@ const ACTIONS = {
 };
 
 const MUTATIONS = {
-  setId(state_, id) {
+  setId(state_, { id, name }) {
     const state = state_;
-    state.userID = id;
+    state.userID = id || '';
+    state.name = name || '';
   },
 };
 

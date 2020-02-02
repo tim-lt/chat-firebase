@@ -19,4 +19,14 @@ body {
   }
 }
 
+header {
+  flex-shrink: 0;
+}
+
+main {
+  flex-grow: 1;
+}
+
+@import "./container.scss";
+
 /* stylelint-enable */

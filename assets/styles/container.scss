@@ -1,0 +1,17 @@
+.container {
+  margin: 0 auto;
+  width: 1440px;
+
+  @include mq("desktop", "desktop-small") {
+    width: 1200px;
+  }
+
+  @include mq("desktop-small", "tablet") {
+    width: 900px;
+  }
+
+  @include mq("tablet") {
+    padding: 0 20px;
+    width: 100%;
+  }
+}
