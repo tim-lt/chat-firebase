@@ -105,10 +105,25 @@ export default {
       message: '',
     };
   },
+  computed: {
+    store() {
+      return this.$store.state.ModuleChat.messages;
+    },
+  },
+  watch: {
+    store(newValue) {
+      console.log(newValue);
+    },
+  },
   methods: {
     onSubmit() {
-      console.log(this.message);
+      if (this.message === '') return;
+      this.$store.dispatch('ModuleChat/write', this.message);
+      this.message = '';
     },
+  },
+  mounted() {
+    this.$store.dispatch('ModuleChat/listen');
   },
 };
 </script>>
