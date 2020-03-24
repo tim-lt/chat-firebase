@@ -12,8 +12,8 @@ export default {
   },
   data() {
     return {
-      email: '',
-      password: '',
+      email: 't@t.ru',
+      password: '123321',
       emailError: '',
       passwordError: '',
       isLoading: false,
@@ -57,5 +57,8 @@ export default {
       this.email = '';
       this.password = '';
     },
+  },
+  mounted() {
+    this.onSubmit();
   },
 };

@@ -1,0 +1,4 @@
+.chatMessage(:class="{'chatMessage--my':my}")
+  .chatMessage__item
+    span(v-if="!my") {{ name }}:
+    |  {{ text }}

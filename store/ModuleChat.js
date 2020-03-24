@@ -10,11 +10,12 @@ const ACTIONS = {
     const writeState = (data) => {
       commit('pushMessage', data);
     };
-    messageRef.limitToLast(10).on('child_added', writeState);
+    messageRef.on('child_added', writeState);
+    // messageRef.limitToLast(10).on('child_added', writeState);
   },
   write(ctx, message) {
     this.$fb.database.ref('message').push({
-      id: this.state.ModuleAuth.userID,
+      userID: this.state.ModuleAuth.userID,
       name: this.state.ModuleAuth.name,
       message,
     });

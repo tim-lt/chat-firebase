@@ -1,0 +1,36 @@
+.chatMessage {
+  &--my {
+    text-align: right;
+
+    .chatMessage__item {
+      background: linear-gradient(to top, $message1, $message2);
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 0;
+      color: #fff;
+    }
+  }
+
+  & + & {
+    margin-top: 20px;
+  }
+
+  &__item {
+    border-radius: 25px;
+    border-bottom-left-radius: 0;
+    display: inline-block;
+    background-color: $background;
+    padding: 10px 15px;
+    text-align: left;
+    max-width: 70%;
+    font: 400 18px/1em "PT Sans", sans-serif;
+    color: $main;
+
+    @include mq("phone") {
+      max-width: 100%;
+    }
+
+    span {
+      font-weight: 700;
+    }
+  }
+}

@@ -43,7 +43,7 @@ const ACTIONS = {
   async logout({ commit }) {
     try {
       await this.$fb.auth.signOut();
-      commit('setId');
+      commit('setId', {});
     } catch (e) {
       console.log(e);
     }

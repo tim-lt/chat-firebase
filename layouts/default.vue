@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.page
+  .page
     header.page__header
       .container.page__headerContainer
         .page__name {{ name }}

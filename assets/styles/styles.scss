@@ -5,6 +5,12 @@ body,
 #__layout {
   min-width: 320px;
   height: 100%;
+
+  @include mq("tablet") {
+    @media (orientation: landscape) {
+      min-height: 500px;
+    }
+  }
 }
 
 body {
@@ -25,8 +31,17 @@ header {
 
 main {
   flex-grow: 1;
+  max-height: calc(100vh - 60px);
+
+  @include mq("tablet") {
+    @media (orientation: landscape) {
+      height: 100%;
+      max-height: none;
+    }
+  }
 }
 
 @import "./container.scss";
+@import "./text.scss";
 
 /* stylelint-enable */
