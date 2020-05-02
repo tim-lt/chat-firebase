@@ -14,11 +14,11 @@
     justify-content: flex-end;
     align-items: flex-start;
     max-height: calc(100% - 50px);
-    padding-bottom: 5px;
   }
 
   &__inner {
     width: 100%;
+    padding-bottom: 15px;
 
     &::before,
     &::after {
@@ -36,7 +36,7 @@
     }
 
     &::after {
-      bottom: 30px;
+      bottom: 15px;
       background: linear-gradient(to top, #fff, rgba(#fff, 0) 100%);
     }
   }

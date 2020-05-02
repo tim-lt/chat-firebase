@@ -2,13 +2,15 @@
 module.exports = {
   router: {
     middleware: ['isLogget'],
+    prefetchLinks: false,
   },
   mode: 'universal',
   /*
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: '',
+    titleTemplate: '%s-SCP',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -44,7 +46,7 @@ module.exports = {
   */
   plugins: [
     { src: '~/plugins/firebase', mode: 'all' },
-    { src: '~/plugins/VueBar', mode: 'all' },
+    { src: '~/plugins/VueBar', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules

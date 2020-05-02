@@ -67,7 +67,11 @@ import BaseInput from '~/components/BaseInput/BaseInput.vue';
 import ChatContainer from '~/components/ChatContainer/ChatContainer.vue';
 
 export default {
-  middleware: ['isLogget'],
+  head() {
+    return {
+      title: 'Home',
+    };
+  },
   components: {
     BaseInput,
     ChatContainer,

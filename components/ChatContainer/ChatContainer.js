@@ -22,7 +22,6 @@ export default {
     scrollMessage() {
       this.$nextTick(() => {
         this.$refs.scroll.scrollTop = this.$refs.scroll.scrollHeight - this.$refs.scroll.clientHeight;
-        console.log(this.$refs.scroll.scrollTop);
       });
     },
   },

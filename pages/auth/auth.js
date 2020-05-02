@@ -6,6 +6,11 @@ import { email } from '~/assets/scripts/regex';
 export default {
   layout: 'empty',
   middleware: ['isLogget'],
+  head() {
+    return {
+      title: 'Login',
+    };
+  },
   components: {
     BaseInput,
     BaseButton,

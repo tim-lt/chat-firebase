@@ -5,6 +5,11 @@ import { email } from '~/assets/scripts/regex';
 
 export default {
   layout: 'empty',
+  head() {
+    return {
+      title: 'Registration',
+    };
+  },
   components: {
     BaseInput,
     BaseButton,
