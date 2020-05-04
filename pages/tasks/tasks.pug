@@ -22,4 +22,8 @@
           .tasks__label Ответственный
           .tasks__label Оценка
           .tasks__label Залогировано
-    BaseButton.tasks__button Добавить задачу
+    BaseButton.tasks__button(@click.native="addTask = true") Добавить задачу
+
+    transition(name="fade")
+      BasePopup.tasks__popup(v-if="addTask", @closePopup="addTask = false")
+        div 1233211

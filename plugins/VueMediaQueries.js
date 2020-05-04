@@ -5,7 +5,7 @@ Vue.use(VueMq, {
   breakpoints: {
     phone: 430,
     'phone-wide': 600,
-    tablet: 920,
+    tablet: 1024,
     'tablet-wide': 1250,
     desktop: 1750,
     'desktop-wide': 2200,

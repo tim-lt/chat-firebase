@@ -1,0 +1,65 @@
+.basePopup {
+  position: fixed;
+  height: 100%;
+  top: 0;
+  width: 100%;
+  left: 0;
+  z-index: 300;
+
+  &__overlay {
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease 0.5s;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(#000, 0.3);
+    position: absolute;
+    z-index: 1;
+  }
+
+  &__content {
+    background-color: $page;
+    border-left: 2px solid #fff;
+    position: absolute;
+    height: 100%;
+    right: 0;
+    top: 0;
+    width: 80%;
+    z-index: 2;
+
+    @include mq("tablet") {
+      width: 100%;
+      border: none;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    z-index: 3;
+    top: 15px;
+    right: 15px;
+    height: 30px;
+    width: 30px;
+
+    &::before,
+    &::after {
+      height: 1px;
+      width: 100%;
+      content: "";
+      background-color: $main;
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      left: 0;
+    }
+
+    &::before {
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translateY(-50%) rotate(-45deg);
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.basePopup
+  .basePopup__close(@click="$emit('closePopup')", v-if="isMobile")
+  .basePopup__overlay(@click="$emit('closePopup')", v-else)
+  .basePopup__content
+    .basePopup__wrapper(v-bar="{}")
+      div
+        slot
