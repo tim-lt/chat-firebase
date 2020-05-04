@@ -13,8 +13,8 @@
         nav.page__nav
           .page__scroll(v-bar)
             div
-              nuxt-link.page__link(to="/" exact) Главная
-              nuxt-link.page__link(to="/tasks" exact) Все задачи
+              nuxt-link.page__link(to="/" exact @click.native="onClick") Главная
+              nuxt-link.page__link(to="/tasks" exact @click.native="onClick") Все задачи
               button.page__link(aria-label="exit" @click="logout") Выход
 </template>
 
@@ -133,7 +133,7 @@
     height: calc(100vh - 60px);
     width: 100%;
     right: 0;
-    z-index: 100;
+    z-index: 500;
 
     &.fade-leave-active,
     &.fade-enter-active {
@@ -242,11 +242,17 @@ export default {
     name() {
       return this.$store.state.ModuleAuth.name;
     },
+    isMobile() {
+      return (this.$mq === 'phone' || this.$mq === 'phone-wide' || this.$mq === 'tablet');
+    },
   },
   methods: {
     async logout() {
       await this.$store.dispatch('ModuleAuth/logout');
       this.$router.replace('/auth');
+    },
+    onClick() {
+      if (this.isMobile) this.isMenu = false;
     },
   },
 };

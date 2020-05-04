@@ -15,6 +15,7 @@
     "express": "^4.16.4",
     "firebase": "^7.7.0",
     "nuxt": "^2.0.0",
+    "vue-mq": "^1.0.1",
     "vuebar": "0.0.20"
   },
   "devDependencies": {

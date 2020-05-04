@@ -47,6 +47,7 @@ module.exports = {
   plugins: [
     { src: '~/plugins/firebase', mode: 'all' },
     { src: '~/plugins/VueBar', mode: 'client' },
+    { src: '~/plugins/VueMediaQueries', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
