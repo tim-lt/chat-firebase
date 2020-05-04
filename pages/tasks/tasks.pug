@@ -1,0 +1,25 @@
+.container.tasks
+  .tasks__content
+    .tasks__container
+      .tasks__wrapper(v-bar="{}")
+        .tasks__scroll
+          .tasks__items
+            BaseTask(
+              v-for="item in 20"
+              key="item"
+              :to="{name: 'tasks-id', params: {id: 1}}"
+              title="First task"
+              date="1588417573317"
+              creator="Лаптев Тимофей"
+              responsible="Tim"
+              time="10"
+              timeSpent="1"
+            )
+        .tasks__labels
+          .tasks__label Название
+          .tasks__label Дата
+          .tasks__label Создатель
+          .tasks__label Ответственный
+          .tasks__label Оценка
+          .tasks__label Залогировано
+    BaseButton.tasks__button Добавить задачу

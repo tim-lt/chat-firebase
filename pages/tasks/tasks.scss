@@ -1,0 +1,72 @@
+.tasks {
+  height: 100%;
+
+  &__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 0;
+  }
+
+  &__wrapper {
+    min-width: 900px;
+  }
+
+  &__container {
+    border-radius: 35px;
+    overflow-y: hidden;
+  }
+
+  &__scroll {
+    border-radius: 35px;
+    background-color: $background;
+    max-height: calc(100vh - 200px);
+    height: 100%;
+    padding-top: 60px;
+
+    @media (orientation: landscape) {
+      min-height: 350px;
+    }
+  }
+
+  &__labels {
+    display: flex;
+    background-color: $background;
+    width: 100%;
+    border-bottom: 2px solid #fff;
+    height: 60px;
+    position: absolute;
+    padding: 0 20px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    align-items: center;
+  }
+
+  &__label {
+    font: 400 18px/1em "PT Sans", sans-serif;
+    width: 15%;
+    padding-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:first-child {
+      width: 30%;
+    }
+
+    &:nth-child(2) {
+      width: 10%;
+    }
+  }
+
+  &__items {
+    margin-top: 25px;
+    padding: 20px;
+  }
+
+  &__button {
+    align-self: flex-end;
+  }
+}

@@ -15,9 +15,16 @@
     position: fixed;
     top: 60px;
     left: 0;
-    height: calc(100vh - 120px);
     width: 100%;
     z-index: 1;
+  }
+
+  @include mq("tablet", "phone") {
+    height: calc(100vh - 120px);
+  }
+
+  @include mq("phone") {
+    height: calc(100vh - 65px);
   }
 
   @media (orientation: landscape) {
