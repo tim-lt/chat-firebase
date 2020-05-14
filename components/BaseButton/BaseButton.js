@@ -10,6 +10,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    simple: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     BaseSpinner,

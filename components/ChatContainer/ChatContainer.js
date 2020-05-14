@@ -12,6 +12,7 @@ export default {
   data() {
     return {
       message: '',
+      first: true,
     };
   },
   components: {
@@ -33,12 +34,9 @@ export default {
       this.message = newValue;
     },
     messages() {
-      if (this.messages.length > 0 && this.messages[this.messages.length - 1].userID !== this.$store.state.ModuleAuth.userID) return;
+      if (this.messages.length > 0 && this.messages[this.messages.length - 1].userID !== this.$store.state.ModuleAuth.userID && !this.first) return;
       this.scrollMessage();
+      this.first = false;
     },
-  },
-  mounted() {
-    console.log(this.messages);
-    this.scrollMessage();
   },
 };

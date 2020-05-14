@@ -5,25 +5,25 @@
         .tasks__scroll
           .tasks__items
             BaseTask(
-              v-for="item in 20"
-              key="item"
-              :to="{name: 'tasks-id', params: {id: 1}}"
-              title="First task"
-              date="1588417573317"
-              creator="Лаптев Тимофей"
-              responsible="Tim"
-              time="10"
-              timeSpent="1"
+              v-for="item in tasks"
+              :key="item.id"
+              :to="{name: 'tasks-id', params: {id: item.id}}"
+              :title="item.title"
+              :date="parseDate(item.date)"
+              :creator="$store.state.ModuleAuth.users[item.creator].info.name"
+              :responsible="$store.state.ModuleAuth.users[item.responsible].info.name"
+              :time="item.assessment"
+              :timeSpent="item.timeSpent"
             )
         .tasks__labels
           .tasks__label Название
-          .tasks__label Дата
+          .tasks__label Дата создания
           .tasks__label Создатель
           .tasks__label Ответственный
           .tasks__label Оценка
-          .tasks__label Залогировано
+          .tasks__label Затрачено
     BaseButton.tasks__button(@click.native="addTask = true") Добавить задачу
 
     transition(name="fade")
       BasePopup.tasks__popup(v-if="addTask", @closePopup="addTask = false")
-        div 1233211
+        AddTask(@closePopup="addTask = false")

@@ -1,0 +1,23 @@
+form.addTask(@submit.prevent="onSubmit")
+  .addTask__fields
+    .addTask__title Создание новой задачи
+    BaseInput.addTask__field(type="text" placeholder="Название задачи" name="name" v-model="models.title" :errorMessage="errors.title")
+    BaseTextarea.addTask__field(v-model="models.desc" name="desc" placeholder="Описание задачи")
+    BaseSelect.addTask__field.addTask__half.addTask__select(
+      :title="models.responsible ? users[models.responsible].info.name : ''",
+      placeholder="Выберите ответственного"
+      :hasError="errors.responsible",
+      ref="selectResponsible")
+      .addTask__selectItem(v-for="key in Object.keys(users)" :key="key")
+        span(@click="setResponsible(key)") {{ users[key].info.name }}
+    BaseSelect.addTask__field.addTask__half.addTask__select(
+      :title="users[models.creator].info.name",
+      placeholder="Выберите постановщика"
+      ref="selectcreator")
+        template(v-for="key in Object.keys(users)")
+          .addTask__selectItem(v-if="key !== $store.state.ModuleAuth.userID")
+            span(@click="setCreator(key)") {{ users[key].info.name }}
+    BaseInput.addTask__field.addTask__half(type="number" placeholder="Оценка в часах" name="name" v-model="models.assessment")
+  .addTask__buttons
+    BaseButton.addTask__button(type="submit") Добавить задачу
+    BaseButton.addTask__button(:simple="true", @click.native="$emit('closePopup')" type="button") Отменить

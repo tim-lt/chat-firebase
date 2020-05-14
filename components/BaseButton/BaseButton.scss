@@ -34,6 +34,20 @@
     z-index: -1;
   }
 
+  &--simple {
+    background-color: $main;
+    border: 1px solid #fff;
+    transition: 0.3s ease background-color;
+
+    &::after {
+      content: none;
+    }
+
+    @include hover() {
+      background-color: rgba($main, 0.8);
+    }
+  }
+
   &__content {
     position: relative;
     transition: 0.3s ease opacity;

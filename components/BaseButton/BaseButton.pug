@@ -1,4 +1,4 @@
-component.baseButton(:is="tag", :disabled="loading")
+component.baseButton(:is="tag", :disabled="loading", :class="{'baseButton--simple': simple}")
   BaseSpinner.baseButton__spanner(:inner="true", v-if="loading", :white="true")
   .baseButton__content(:class="{'baseButton__content--loading':loading}")
     slot

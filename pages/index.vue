@@ -76,7 +76,7 @@ import ChatContainer from '~/components/ChatContainer/ChatContainer.vue';
 export default {
   head() {
     return {
-      title: 'Home',
+      title: 'Chat',
     };
   },
   components: {

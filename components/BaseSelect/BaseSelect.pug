@@ -1,0 +1,14 @@
+.baseSelect(:class="{'baseSelect--open': isOpen, 'baseSelect--error': hasError, 'baseSelect--active': title,}")
+  button.baseSelect__header(@click.prevent="toggle")
+    span.baseSelect__headerTitle {{ title }}
+
+    span.baseSelect__headerPlaceholder {{ placeholder }}
+
+    span.baseSelect__headerIcon
+
+  .baseSelect__body(ref="body")
+    .baseSelect__bodyInner(ref="bodyInner", v-bar={})
+      .baseSelect__scroll
+        .baseSelect__wrapper
+          slot
+

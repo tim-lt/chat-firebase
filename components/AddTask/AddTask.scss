@@ -1,0 +1,104 @@
+.addTask {
+  padding: 50px 100px;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include mq("tablet") {
+    padding: 45px 45px 45px 30px;
+  }
+
+  &__fields {
+    background-color: #fff;
+    border-radius: 35px;
+    padding: 35px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include mq("tablet") {
+      padding: 25px 10px;
+    }
+  }
+
+  &__field {
+    &:first-of-type {
+      margin-top: 50px;
+    }
+
+    & + & {
+      margin-top: 30px;
+    }
+  }
+
+  &__half {
+    width: 50%;
+
+    @include mq("tablet") {
+      width: 100%;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    margin-top: 30px;
+
+    @include mq("tablet") {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+  }
+
+  &__button {
+    @include mq("phone") {
+      width: 100%;
+    }
+
+    & + & {
+      margin-left: 20px;
+
+      @include mq("tablet") {
+        margin-left: 0;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  &__selectItem {
+    cursor: pointer;
+    position: relative;
+    z-index: 30;
+
+    span {
+      padding: 10px;
+      color: $text;
+      display: block;
+      transition: 0.3s ease color;
+      font: 18px/1em "PT Sans", sans-serif;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      @include hover() {
+        color: $main;
+      }
+    }
+  }
+
+  &__title {
+    color: $main;
+    font: 36px/1em "PT Sans", sans-serif;
+  }
+
+  &__select {
+    &:first-of-type {
+      z-index: 6;
+    }
+  }
+}

@@ -19,8 +19,18 @@ export default {
     value: {},
   },
   methods: {
+    onInput({ target }) {
+      if (this.type !== 'number') this.$emit('input', target.value);
+    },
     onChange({ target }) {
-      this.$emit('input', target.value);
+      if (this.type === 'number') {
+        if ((Number(target.value) && Number(target.value) > 1) || target.value === '0') {
+          this.$emit('input', Number(target.value) || target.value);
+        } else {
+          const target_ = target;
+          target_.value = this.value;
+        }
+      }
     },
   },
 };

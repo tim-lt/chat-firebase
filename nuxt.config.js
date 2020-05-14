@@ -48,6 +48,7 @@ module.exports = {
     { src: '~/plugins/firebase', mode: 'all' },
     { src: '~/plugins/VueBar', mode: 'client' },
     { src: '~/plugins/VueMediaQueries', mode: 'client' },
+    { src: '~/plugins/closestPolyfill', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules

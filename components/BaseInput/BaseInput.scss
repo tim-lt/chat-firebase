@@ -70,6 +70,14 @@
     &:focus ~ svg {
       fill: $main;
     }
+
+    &[type="number"] {
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+    }
   }
 
   &__placeholder {

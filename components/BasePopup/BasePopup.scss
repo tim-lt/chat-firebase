@@ -62,4 +62,14 @@
       transform: translateY(-50%) rotate(-45deg);
     }
   }
+
+  &__wrapper {
+    height: 100%;
+
+    .vb-dragger {
+      right: 0;
+      width: 2px;
+      background-color: #000;
+    }
+  }
 }

@@ -57,18 +57,17 @@ const MUTATIONS = {
   setId(state_, id) {
     const state = state_;
     state.userID = id || '';
-    state.users.forEach((user) => {
-      if (user.id === id) state.name = user.name;
+    if (!id) {
+      state.name = '';
+      return;
+    }
+    Object.keys(state.users).forEach((key) => {
+      if (key === id) state.name = state.users[key].info.name;
     });
-    if (!id) state.name = '';
   },
-  setUsers(state, users) {
-    Object.keys(users).forEach((key) => {
-      state.users.push({
-        id: key,
-        ...users[key].info,
-      });
-    });
+  setUsers(state_, users) {
+    const state = state_;
+    state.users = users;
   },
 };
 

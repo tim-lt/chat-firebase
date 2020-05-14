@@ -1,0 +1,169 @@
+.baseSelect {
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  width: 100%;
+  z-index: 5;
+
+  &--open {
+    .baseSelect__header {
+      background-color: #e5e9eb;
+    }
+
+    .baseSelect__headerIcon {
+      transform: none;
+    }
+
+    .baseSelect__body {
+      height: auto;
+    }
+
+    .baseSelect__headerPlaceholder {
+      transform: translateY(-15px) translateY(-50%) scale(0.7);
+    }
+  }
+
+  &--active {
+    .baseSelect__headerPlaceholder {
+      transform: translateY(-15px) translateY(-50%) scale(0.7);
+    }
+  }
+
+  &--error {
+    .baseSelect__header {
+      border-color: $error;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px 10px 40px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    background-color: $background;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    transition: 0.3s border-color ease, 0.3s ease background-color;
+    z-index: 10;
+    position: relative;
+
+    @include hover() {
+      background-color: #e5e9eb;
+    }
+  }
+
+  &__headerPlaceholder {
+    color: $text;
+    position: absolute;
+    top: 50%;
+    font: 16px/1em "PT Sans", sans-serif;
+    left: 40px;
+    transform: translateY(-50%);
+    transition: 0.3s color ease, 0.3s transform ease;
+    transform-origin: left;
+    max-width: calc(100% - 95px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    z-index: 2;
+  }
+
+  &__headerTitle {
+    color: $main;
+    font: 18px/1em "PT Sans", sans-serif;
+    user-select: none;
+    width: calc(100% - 50px);
+    transition: 0.3s color ease;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__headerIcon {
+    margin-left: 10px;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    transition: 0.3s ease transform;
+    transform: rotate(180deg);
+
+    &::before,
+    &::after {
+      content: "";
+      background-color: $main;
+      position: absolute;
+      height: 1px;
+      width: 50%;
+      top: 30%;
+    }
+
+    &::before {
+      left: 0;
+      transform: translateY(-50%) rotate(-45deg);
+      transform-origin: right;
+    }
+
+    &::after {
+      right: 0;
+      transform: translateY(-50%) rotate(45deg);
+      transform-origin: left;
+    }
+  }
+
+  &__body {
+    overflow: hidden;
+    height: 0;
+    transition: height 0.4s ease-in-out;
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+    left: 0;
+    transform: translateY(100%);
+    z-index: 1;
+  }
+
+  &__bodyInner {
+    background-color: $background;
+    border: 1px solid transparent;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+    &::before,
+    &::after {
+      content: "";
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+
+    &::before {
+      height: 50px;
+      top: 0;
+      background: linear-gradient(to bottom, #fff 35%, rgba(#fff, 0));
+      z-index: 20;
+    }
+
+    &::after {
+      height: 20px;
+      bottom: 0;
+      background: linear-gradient(to top, #fff, rgba(#fff, 0) 75%);
+      z-index: 40;
+    }
+  }
+
+  &__scroll {
+    max-height: 240px;
+
+    @include mq("tablet") {
+      max-height: 125px;
+    }
+  }
+
+  &__wrapper {
+    padding: 30px 15px 10px 40px;
+    height: 100%;
+  }
+}

@@ -1,0 +1,58 @@
+.baseTextarea {
+  position: relative;
+  width: 100%;
+  background-color: $background;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 100px;
+  padding: 20px 15px 10px 40px;
+  transition: 0.3s border-color ease, 0.3s ease background-color;
+
+  @include hover() {
+    background-color: rgba($default, 0.6);
+  }
+
+  &--recorded {
+    .baseTextarea__placeholder {
+      transform: translateY(-13px) translateY(-50%) scale(0.7);
+    }
+  }
+
+  &__field {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: $main;
+    resize: none;
+    cursor: pointer;
+    font: 18px/1em "PT Sans", sans-serif;
+    height: 100%;
+    user-select: none;
+    transition: 0.3s color ease;
+    width: 100%;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus + .baseTextarea__placeholder {
+      transform: translateY(-13px) translateY(-50%) scale(0.7);
+    }
+
+    &:focus ~ svg {
+      fill: $main;
+    }
+  }
+
+  &__placeholder {
+    color: $text;
+    position: absolute;
+    top: 25px;
+    left: 40px;
+    transform: translateY(-50%);
+    transition: 0.3s color ease, 0.3s transform ease;
+    transform-origin: left;
+    z-index: 2;
+  }
+}
