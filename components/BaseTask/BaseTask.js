@@ -1,3 +1,5 @@
+import { getStatus } from '~/assets/scripts/helpers';
+
 export default {
   props: {
     to: {
@@ -9,6 +11,10 @@ export default {
       required: true,
     },
     date: {
+      type: String,
+      required: true,
+    },
+    status: {
       type: String,
       required: true,
     },
@@ -27,6 +33,11 @@ export default {
     timeSpent: {
       type: Number,
       default: 0,
+    },
+  },
+  computed: {
+    statusParse() {
+      return getStatus(this.status);
     },
   },
 };
