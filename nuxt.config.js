@@ -49,6 +49,7 @@ module.exports = {
     { src: '~/plugins/VueBar', mode: 'client' },
     { src: '~/plugins/VueMediaQueries', mode: 'client' },
     { src: '~/plugins/closestPolyfill', mode: 'client' },
+    { src: '~/plugins/dragscroll', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
