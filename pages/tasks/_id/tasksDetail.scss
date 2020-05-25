@@ -1,3 +1,159 @@
 .tasksDetail {
-  width: 100%;
+  height: 100%;
+  padding: 30px 0;
+
+  &__wrapper {
+    height: 100%;
+    border-radius: 35px;
+  }
+
+  &__scroll {
+    background-color: #fff;
+    height: 100%;
+  }
+
+  &__content {
+    padding: 50px 50px 30px;
+    min-height: 100%;
+
+    @include mq("tablet") {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  &__title {
+    color: $main;
+    font: 44px/1em "PT Sans", sans-serif;
+  }
+
+  &__text {
+    color: $main;
+    margin-top: 30px;
+    font: 18px/1em "PT Sans", sans-serif;
+    width: 100%;
+    overflow: hidden;
+
+    & > span {
+      font-weight: 700;
+    }
+
+    & > p {
+      display: inline;
+    }
+  }
+
+  &__timeForm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  &__timeField {
+    margin-top: 20px;
+    margin-right: 10px;
+    width: 200px;
+
+    &--text {
+      width: 500px;
+      max-width: 100%;
+    }
+  }
+
+  &__timeButton {
+    margin-top: 20px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__time {
+    max-width: 100%;
+    margin-top: 10px;
+    cursor: grab;
+    display: flex;
+    background-color: $background;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 15px 0 15px 40px;
+    height: 50px;
+    overflow: hidden;
+
+    @include mq("tablet") {
+      overflow-x: auto;
+    }
+
+    @include hover() {
+      .tasksDetail__timeDelete {
+        &::before,
+        &::after {
+          opacity: 1;
+          visibility: visible;
+          transition: 0.3s opacity ease;
+        }
+      }
+    }
+  }
+
+  &__timeItem {
+    flex-shrink: 0;
+
+    &:first-of-type {
+      margin-right: -10px;
+
+      span {
+        margin-right: 0;
+      }
+    }
+
+    span {
+      opacity: 0.6;
+      margin-right: 5px;
+    }
+
+    & + & {
+      margin-left: 20px;
+    }
+  }
+
+  &__timeDelete {
+    flex-shrink: 0;
+    cursor: pointer;
+    width: 30px;
+    margin-left: 10px;
+    position: relative;
+    height: 20px;
+    align-self: center;
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 15px;
+      height: 1px;
+      background-color: #000;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s opacity ease, 0s visibility 0.3s;
+      z-index: 1;
+
+      @include mq("tablet") {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &::before {
+      transform: rotate(45deg) translateY(-50%);
+    }
+
+    &::after {
+      transform: rotate(-45deg) translateY(-50%);
+    }
+  }
 }

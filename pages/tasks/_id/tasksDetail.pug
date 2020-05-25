@@ -1,2 +1,55 @@
-.container
-  .tasksDetail detail
+.container.tasksDetail
+  .tasksDetail__wrapper(v-bar)
+    .tasksDetail__scroll
+      .tasksDetail__content
+        .tasksDetail__title {{ task.title }}
+        .tasksDetail__text
+          span Статус задачи:
+          |  {{ statusParse }}
+        .tasksDetail__text
+          span Описание:
+          |  {{ task.desc }}
+        .tasksDetail__text
+          span Выделенное время:
+          |  {{ task.assessment !== 0 ? `${this.task.assessment} ч` : 'нет' }}
+        .tasksDetail__text
+          span Время:
+          p(v-if="times.length === 0")  Нет
+          .tasksDetail__list(v-else)
+            .tasksDetail__time(v-for="(item, index) in times", :key="item.id", v-dragscroll)
+              .tasksDetail__timeItem
+                span {{ index + 1 + ')'}}
+              .tasksDetail__timeItem
+                span Дата:
+                |  {{ parseDate(item.date) }}
+              .tasksDetail__timeItem
+                span Создатель:
+                |  {{ $store.state.ModuleAuth.users[item.userID].info.name }}
+              .tasksDetail__timeItem
+                span Кол-во:
+                |  {{ item.time }}
+              .tasksDetail__timeItem
+                span Описание:
+                |  {{ item.text || 'Нет' }}
+              .tasksDetail__timeDelete(@click="deleteTime(item.id, index)")
+          .tasksDetail__timeForm
+            BaseInput.tasksDetail__timeField(
+              type="number"
+              placeholder="Количество"
+              name="time"
+              v-model="time"
+            )
+            BaseInput.tasksDetail__timeField.tasksDetail__timeField--text(
+              type="text"
+              placeholder="Описание"
+              name="timeText"
+              v-model="timeText"
+            )
+          BaseButton.tasksDetail__timeButton(
+            type="submit",
+            @click.native="addTime"
+            :disabled="!time"
+          ) Добавить время
+        .tasksDetail__text
+          span Комментарии:
+          |  Нет
