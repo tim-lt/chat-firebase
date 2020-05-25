@@ -31,6 +31,15 @@ export default {
       const date = new Date(date_);
       return `${date.getDate()} ${MONTH[date.getMonth()].toLowerCase()}`;
     },
+    getTimeSpent(times) {
+      console.log(times);
+      if (!times) return 0;
+      let count = 0;
+      Object.keys(times).forEach((key) => {
+        count += times[key].time;
+      });
+      return count;
+    },
   },
   mounted() {
     if (this.$store.state.ModuleTask.tasks.length === 0) this.$store.dispatch('ModuleTask/listenTask');

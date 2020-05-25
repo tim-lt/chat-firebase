@@ -14,7 +14,7 @@
               :creator="$store.state.ModuleAuth.users[item.creator].info.name"
               :responsible="$store.state.ModuleAuth.users[item.responsible].info.name"
               :time="item.assessment"
-              :timeSpent="item.timeSpent"
+              :timeSpent="getTimeSpent(item.time)"
             )
         .tasks__labels
           .tasks__label Название
@@ -28,4 +28,8 @@
 
     transition(name="fade")
       BasePopup.tasks__popup(v-if="addTask", @closePopup="addTask = false")
-        AddTask(@closePopup="addTask = false")
+        AddTask(
+          @closePopup="addTask = false",
+          titleText="Создание новой задачи",
+          buttonText="Добавить задачу"
+        )
