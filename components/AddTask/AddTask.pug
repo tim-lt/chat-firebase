@@ -1,6 +1,6 @@
 form.addTask(@submit.prevent="onSubmit")
   .addTask__fields
-    .addTask__title Создание новой задачи
+    .addTask__title {{ titleText }}
     BaseInput.addTask__field(type="text" placeholder="Название задачи" name="name" v-model="models.title" :errorMessage="errors.title")
     BaseTextarea.addTask__field(v-model="models.desc" name="desc" placeholder="Описание задачи")
     BaseSelect.addTask__field.addTask__half.addTask__select(
@@ -19,5 +19,5 @@ form.addTask(@submit.prevent="onSubmit")
             span(@click="setCreator(key)") {{ users[key].info.name }}
     BaseInput.addTask__field.addTask__half(type="number" placeholder="Оценка в часах" name="name" v-model="models.assessment")
   .addTask__buttons
-    BaseButton.addTask__button(type="submit") Добавить задачу
+    BaseButton.addTask__button(type="submit") {{ buttonText }}
     BaseButton.addTask__button(:simple="true", @click.native="$emit('closePopup')" type="button") Отменить

@@ -43,13 +43,13 @@
     }
   }
 
-  &__timeForm {
+  &__form {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
   }
 
-  &__timeField {
+  &__field {
     margin-top: 20px;
     margin-right: 10px;
     width: 200px;
@@ -58,9 +58,14 @@
       width: 500px;
       max-width: 100%;
     }
+
+    &--comment {
+      width: 485px;
+      max-width: 100%;
+    }
   }
 
-  &__timeButton {
+  &__button {
     margin-top: 20px;
   }
 
@@ -87,7 +92,7 @@
     }
 
     @include hover() {
-      .tasksDetail__timeDelete {
+      .tasksDetail__delete {
         &::before,
         &::after {
           opacity: 1;
@@ -119,7 +124,7 @@
     }
   }
 
-  &__timeDelete {
+  &__delete {
     flex-shrink: 0;
     cursor: pointer;
     width: 30px;
@@ -127,6 +132,14 @@
     position: relative;
     height: 20px;
     align-self: center;
+
+    &--comment {
+      position: absolute;
+      width: 20px;
+      right: 10px;
+      top: 14px;
+      z-index: 1;
+    }
 
     &::after,
     &::before {
@@ -154,6 +167,38 @@
 
     &::after {
       transform: rotate(-45deg) translateY(-50%);
+    }
+  }
+
+  &__comment {
+    margin-top: 10px;
+    background-color: $background;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    padding: 15px 40px;
+    overflow: hidden;
+    position: relative;
+    max-width: 70%;
+
+    @include hover() {
+      .tasksDetail__delete {
+        &::before,
+        &::after {
+          opacity: 1;
+          visibility: visible;
+          transition: 0.3s opacity ease;
+        }
+      }
+    }
+  }
+
+  &__commentTitle {
+    margin-bottom: 10px;
+    font-weight: 700;
+
+    span {
+      margin-left: 10px;
+      opacity: 0.6;
     }
   }
 }

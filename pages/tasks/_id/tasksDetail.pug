@@ -10,6 +10,9 @@
           span Описание:
           |  {{ task.desc }}
         .tasksDetail__text
+          span Дата создания:
+          |  {{ parseDate(task.date) }}
+        .tasksDetail__text
           span Выделенное время:
           |  {{ task.assessment !== 0 ? `${this.task.assessment} ч` : 'нет' }}
         .tasksDetail__text
@@ -31,25 +34,43 @@
               .tasksDetail__timeItem
                 span Описание:
                 |  {{ item.text || 'Нет' }}
-              .tasksDetail__timeDelete(@click="deleteTime(item.id, index)")
-          .tasksDetail__timeForm
-            BaseInput.tasksDetail__timeField(
+              .tasksDetail__delete(@click="deleteTime(item.id, index)", v-if="item.userID === $store.state.ModuleAuth.userID")
+          .tasksDetail__form
+            BaseInput.tasksDetail__field(
               type="number"
               placeholder="Количество"
               name="time"
               v-model="time"
             )
-            BaseInput.tasksDetail__timeField.tasksDetail__timeField--text(
+            BaseInput.tasksDetail__field.tasksDetail__field--text(
               type="text"
               placeholder="Описание"
               name="timeText"
               v-model="timeText"
             )
-          BaseButton.tasksDetail__timeButton(
+          BaseButton.tasksDetail__button(
             type="submit",
             @click.native="addTime"
             :disabled="!time"
           ) Добавить время
         .tasksDetail__text
           span Комментарии:
-          |  Нет
+          p(v-if="comments.length === 0")  Нет
+          .tasksDetail__list(v-else)
+            .tasksDetail__comment(v-for="(item, index) in comments", v-dragscroll)
+              .tasksDetail__commentTitle {{ $store.state.ModuleAuth.users[item.userID].info.name }}
+                span {{ parseDate(item.date) }}
+              | {{ item.comment }}
+              .tasksDetail__delete.tasksDetail__delete--comment(@click="deleteComment(item.id, index)", v-if="item.userID === $store.state.ModuleAuth.userID")
+          .tasksDetail__form
+            BaseInput.tasksDetail__field.tasksDetail__field--comment(
+              type="text"
+              placeholder="Комментарий"
+              name="commentText"
+              v-model="comment"
+            )
+            BaseButton.tasksDetail__button(
+              type="submit",
+              @click.native="addComment"
+              :disabled="!comment"
+            ) Добавить комментарий

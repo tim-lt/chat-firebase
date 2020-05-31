@@ -13,6 +13,7 @@ export default {
     return {
       time: '',
       timeText: '',
+      comment: '',
     };
   },
   components: {
@@ -29,6 +30,9 @@ export default {
     times() {
       return this.$store.state.ModuleTask.time;
     },
+    comments() {
+      return this.$store.state.ModuleTask.comment;
+    },
   },
   methods: {
     addTime() {
@@ -40,11 +44,22 @@ export default {
       });
       this.time = '';
       this.timeText = '';
-      setTimeout(() => this.task, 2000);
+    },
+    addComment() {
+      this.$store.dispatch('ModuleTask/addComment', {
+        comment: this.comment,
+        user: this.$store.state.ModuleAuth.userID,
+        id: this.$route.params.id,
+      });
+      this.comment = '';
+    },
+    parseNum(num) {
+      if (num < 10) return `0${num}`;
+      return num;
     },
     parseDate(date_) {
       const date = new Date(date_);
-      return `${date.getDate()} ${MONTH[date.getMonth()].toLowerCase()}`;
+      return `${date.getDate()} ${MONTH[date.getMonth()].toLowerCase()}, ${this.parseNum(date.getHours())}:${this.parseNum(date.getMinutes())}:${this.parseNum(date.getSeconds())}`;
     },
     deleteTime(id, index) {
       this.$store.dispatch('ModuleTask/deleteTime', {
@@ -53,11 +68,20 @@ export default {
         index,
       });
     },
+    deleteComment(id, index) {
+      this.$store.dispatch('ModuleTask/deleteComment', {
+        taskId: this.$route.params.id,
+        id,
+        index,
+      });
+    },
   },
   mounted() {
     this.$store.dispatch('ModuleTask/listenTime', this.$route.params.id);
+    this.$store.dispatch('ModuleTask/listenComment', this.$route.params.id);
   },
   beforeDestroy() {
     this.$store.dispatch('ModuleTask/unListenTime', this.$route.params.id);
+    this.$store.dispatch('ModuleTask/unListenComment', this.$route.params.id);
   },
 };

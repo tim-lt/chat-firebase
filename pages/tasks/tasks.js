@@ -32,7 +32,6 @@ export default {
       return `${date.getDate()} ${MONTH[date.getMonth()].toLowerCase()}`;
     },
     getTimeSpent(times) {
-      console.log(times);
       if (!times) return 0;
       let count = 0;
       Object.keys(times).forEach((key) => {

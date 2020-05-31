@@ -4,6 +4,36 @@ import BaseTextarea from '../BaseTextarea/BaseTextarea.vue';
 import BaseSelect from '../BaseSelect/BaseSelect.vue';
 
 export default {
+  props: {
+    titleText: {
+      type: String,
+      required: true,
+    },
+    buttonText: {
+      type: String,
+      required: true,
+    },
+    titleProp: {
+      type: String,
+      default: '',
+    },
+    descProp: {
+      type: String,
+      default: '',
+    },
+    responsibleProp: {
+      type: String,
+      default: '',
+    },
+    assessmentProp: {
+      type: Number,
+      default: 0,
+    },
+    creatorProp: {
+      type: String,
+      default: '',
+    },
+  },
   components: {
     BaseButton,
     BaseInput,
@@ -13,11 +43,11 @@ export default {
   data() {
     return {
       models: {
-        title: '',
-        desc: '',
-        responsible: '',
-        assessment: 0,
-        creator: this.$store.state.ModuleAuth.userID,
+        title: this.titleProp,
+        desc: this.descProp,
+        responsible: this.responsibleProp,
+        assessment: this.assessmentProp,
+        creator: this.creatorProp || this.$store.state.ModuleAuth.userID,
       },
       errors: {
         title: '',
