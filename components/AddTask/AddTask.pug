@@ -3,6 +3,7 @@ form.addTask(@submit.prevent="onSubmit")
     .addTask__title {{ titleText }}
     BaseInput.addTask__field(type="text" placeholder="Название задачи" name="name" v-model="models.title" :errorMessage="errors.title")
     BaseTextarea.addTask__field(v-model="models.desc" name="desc" placeholder="Описание задачи")
+    InputFile.addTask__field(name="file", v-model="models.files")
     BaseSelect.addTask__field.addTask__half.addTask__select(
       :title="models.responsible ? users[models.responsible].info.name : ''",
       placeholder="Выберите ответственного"

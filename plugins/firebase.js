@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import 'firebase/storage';
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
@@ -16,10 +17,12 @@ if (!firebase.apps.length) {
 
 const auth = firebase.auth();
 const database = firebase.database();
+const storage = firebase.storage();
 
 export default (context, inject) => {
   inject('fb', {
     auth,
     database,
+    storage,
   });
 };

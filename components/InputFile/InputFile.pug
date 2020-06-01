@@ -1,0 +1,15 @@
+label.inputFile(
+    @dragstart.prevent="onDrag",
+    @dragover.prevent="onDrag",
+    @dragleave.prevent="isDrop = false",
+    @drop.prevent="onDrop"
+    :class="{'inputFile--droppable': isDrop}"
+  )
+  input(
+    type="file",
+    :name="name",
+    @change="onChange"
+    multiple,
+    ref="input"
+  )
+  span.inputFile__text {{ text }}

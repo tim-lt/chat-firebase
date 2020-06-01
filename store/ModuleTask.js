@@ -48,6 +48,7 @@ const ACTIONS = {
       responsible,
       assessment,
       creator,
+      files,
     },
   ) {
     this.$fb.database.ref('tasks').push({
@@ -58,6 +59,7 @@ const ACTIONS = {
       creator,
       date: Date.now(),
       status: 'work',
+      files,
     });
   },
   addTime(ctx, {
@@ -77,11 +79,13 @@ const ACTIONS = {
     comment,
     user,
     id,
+    files,
   }) {
     this.$fb.database.ref(`tasks/${id}/comment`).push({
       comment,
       userID: user,
       date: Date.now(),
+      files,
     });
   },
   deleteTime({ commit }, { taskId, id, index }) {
@@ -91,6 +95,14 @@ const ACTIONS = {
   deleteComment({ commit }, { taskId, id, index }) {
     this.$fb.database.ref(`tasks/${taskId}/comment/${id}`).remove();
     commit('deleteComment', index);
+  },
+  async addFile(ctx, { date, files }) {
+    const reqests = [];
+    files.forEach((file) => {
+      const storageRef = this.$fb.storage.ref(`${date}/${file.name}`);
+      reqests.push(storageRef.put(file));
+    });
+    await Promise.all(reqests);
   },
 };
 

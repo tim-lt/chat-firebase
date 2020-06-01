@@ -201,4 +201,55 @@
       opacity: 0.6;
     }
   }
+
+  &__files {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__file {
+    color: $main;
+    cursor: pointer;
+    font: 18px/1em "PT Sans", sans-serif;
+    margin-top: 10px;
+    transition: 0.3s ease opacity;
+
+    @include hover() {
+      opacity: 0.7;
+    }
+  }
+
+  &__link {
+    display: none;
+  }
+
+  &__fieldFile {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  &__fileInput {
+    width: 100%;
+    max-width: 710px;
+  }
+
+  &__fileText {
+    margin-top: 25px;
+
+    span {
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      margin-top: 5px;
+      display: block;
+      transition: 0.3s ease opacity;
+
+      @include hover() {
+        opacity: 0.7;
+      }
+    }
+  }
 }

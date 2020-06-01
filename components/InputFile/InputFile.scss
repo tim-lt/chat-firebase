@@ -1,0 +1,33 @@
+.inputFile {
+  border: 1px dashed $default;
+  border-radius: 20px;
+  position: relative;
+  height: 100px;
+  background-color: $background;
+  display: block;
+  transition: 0.3s ease border-color;
+  width: 100%;
+
+  &--droppable {
+    border-color: $main;
+  }
+
+  input {
+    appearance: none;
+    width: 0;
+  }
+
+  &__text {
+    width: calc(100% - 65px);
+    left: 40px;
+    top: 25px;
+    color: $text;
+    position: absolute;
+    z-index: 2;
+    transform: translateY(-50%);
+    font: 18px/1em "PT Sans", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

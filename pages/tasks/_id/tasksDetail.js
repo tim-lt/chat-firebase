@@ -1,7 +1,8 @@
-import { getStatus, MONTH } from '~/assets/scripts/helpers';
+import { getStatus, MONTH, numStr } from '~/assets/scripts/helpers';
 
 import BaseInput from '~/components/BaseInput/BaseInput.vue';
 import BaseButton from '~/components/BaseButton/BaseButton.vue';
+import InputFile from '~/components/InputFile/InputFile.vue';
 
 export default {
   head() {
@@ -14,10 +15,12 @@ export default {
       time: '',
       timeText: '',
       comment: '',
+      files: [],
     };
   },
   components: {
     BaseInput,
+    InputFile,
     BaseButton,
   },
   computed: {
@@ -45,13 +48,32 @@ export default {
       this.time = '';
       this.timeText = '';
     },
-    addComment() {
-      this.$store.dispatch('ModuleTask/addComment', {
-        comment: this.comment,
-        user: this.$store.state.ModuleAuth.userID,
-        id: this.$route.params.id,
+    async addComment() {
+      try {
+        const date = Date.now();
+        let files = [];
+        if (this.files.length > 0) {
+          await this.$store.dispatch('ModuleTask/addFile', { date, files: this.files });
+          files = this.getFileNames(date);
+        }
+        this.$store.dispatch('ModuleTask/addComment', {
+          comment: this.comment,
+          user: this.$store.state.ModuleAuth.userID,
+          id: this.$route.params.id,
+          files,
+        });
+        this.comment = '';
+        this.files = [];
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    getFileNames(date) {
+      const files = [];
+      this.files.forEach((file) => {
+        files.push(`${date}/${file.name}`);
       });
-      this.comment = '';
+      return files;
     },
     parseNum(num) {
       if (num < 10) return `0${num}`;
@@ -74,6 +96,29 @@ export default {
         id,
         index,
       });
+    },
+    async downloadFile(file) {
+      try {
+        const ref = this.$fb.storage.ref(file);
+        const response = await ref.getDownloadURL();
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = () => {
+          const blob = xhr.response;
+          const url = URL.createObjectURL(blob);
+          const { link } = this.$refs;
+          link.href = url;
+          link.download = `${file.split('/')[1]}`;
+          link.click();
+        };
+        xhr.open('GET', response);
+        xhr.send();
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    getWord(count) {
+      return `${numStr(count, ['Прикрепленный файл', 'Прикрепленные файлы', 'Прикрепленные файлы'])}:`;
     },
   },
   mounted() {

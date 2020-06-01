@@ -12,6 +12,11 @@
         .tasksDetail__text
           span Дата создания:
           |  {{ parseDate(task.date) }}
+        .tasksDetail__text(v-if="task.files && task.files.length > 0")
+          span Прикрепленные файлы:
+          a.tasksDetail__link(href="#", ref="link") 12321
+          .tasksDetail__files
+           .tasksDetail__file(v-for="(item, index) in task.files", @click="downloadFile(item)") {{ `${index + 1}) ${item.split('/')[1]}` }}
         .tasksDetail__text
           span Выделенное время:
           |  {{ task.assessment !== 0 ? `${this.task.assessment} ч` : 'нет' }}
@@ -61,8 +66,14 @@
               .tasksDetail__commentTitle {{ $store.state.ModuleAuth.users[item.userID].info.name }}
                 span {{ parseDate(item.date) }}
               | {{ item.comment }}
+              .tasksDetail__fileText(v-if="item.files && item.files.length > 0")
+                p {{ getWord(item.files.length) }}
+                span(v-for="(file, index) in item.files", @click="downloadFile(file)")
+                  | {{ ` ${index + 1}) ${file.split('/')[1]}` }}
               .tasksDetail__delete.tasksDetail__delete--comment(@click="deleteComment(item.id, index)", v-if="item.userID === $store.state.ModuleAuth.userID")
           .tasksDetail__form
+            .tasksDetail__fieldFile
+              InputFile.tasksDetail__fileInput(name="file", v-model="files")
             BaseInput.tasksDetail__field.tasksDetail__field--comment(
               type="text"
               placeholder="Комментарий"
@@ -72,5 +83,5 @@
             BaseButton.tasksDetail__button(
               type="submit",
               @click.native="addComment"
-              :disabled="!comment"
+              :disabled="!comment && files.length === 0"
             ) Добавить комментарий
