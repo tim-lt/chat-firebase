@@ -17,7 +17,6 @@ export default {
   watch: {
     value(newValue) {
       if (newValue.length === 0) {
-        console.log(newValue);
         this.$refs.input.value = null;
         this.generateText([]);
       }
